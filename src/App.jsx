@@ -1,7 +1,10 @@
+import { Post } from './Post';
+
 export function App() {
   return (
     <>
-      <h1>Hydro Feed</h1>
+      <Post author="Igor" content="Lorem" />
+      <Post author="Laisa" content="Lorem" />
     </>
   );
 }
