@@ -1,4 +1,18 @@
 .header {
-  background: white;
-  height: 80px;
+  background: var(--gray-800);
+  display: flex;
+  justify-content: center;
+  padding: 1.25rem 0;
+}
+
+.header img {
+  height: 2rem;
+}
+
+.header strong {
+  display: flex;
+  justify-content: center;
+  margin-left: 1rem;
+  padding: 0.563rem 0;
+  color: var(--white);
 }
