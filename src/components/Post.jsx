@@ -11,6 +11,8 @@ export function Post({ author, content, publishedAt }) {
   // Segundo parametro = uma função para alterar o valor da minha variável
   const [comments, setComments] = useState([]);
 
+  const [newCommentText, setNewCommentText] = useState('');
+
   const publishedDateFormatted = format(
     publishedAt,
     "d 'de' LLLL 'às' HH:mm'h'",
@@ -27,8 +29,13 @@ export function Post({ author, content, publishedAt }) {
     event.preventDefault();
     //Spread Operator, ele lê o que tem nos comentários e copia
     //Mesma coisa = setComments([1, 2])
-    setComments([...comments, comments.length + 1]);
-    console.log(comments);
+
+    setComments([...comments, newCommentText]);
+    setNewCommentText('');
+  }
+
+  function handleNewCommentChange() {
+    setNewCommentText(event.target.value);
   }
 
   return (
@@ -66,7 +73,12 @@ export function Post({ author, content, publishedAt }) {
 
       <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
-        <textarea placeholder="Deixe um comentário" />
+        <textarea
+          name="comment"
+          placeholder="Deixe um comentário"
+          value={newCommentText}
+          onChange={handleNewCommentChange}
+        />
 
         <footer>
           <button type="submit">Publicar</button>
@@ -75,7 +87,7 @@ export function Post({ author, content, publishedAt }) {
 
       <div className={styles.commentList}>
         {comments.map((comment) => {
-          return <Comment />;
+          return <Comment content={comment} />;
         })}
       </div>
     </article>
